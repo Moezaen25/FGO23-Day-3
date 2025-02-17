@@ -1,44 +1,36 @@
-function konversiSuhu(nilai, dari, ke) {
-    let suhuDalamCelcius;
-    
-    switch (dari.toLowerCase()) {
-        case 'c':
-            suhuDalamCelcius = nilai;
-            break;
-        case 'r':
-            suhuDalamCelcius = nilai * (5/4);
-            break;
-        case 'f':
-            suhuDalamCelcius = (nilai - 32) * (5/9);
-            break;
-        case 'k':
-            suhuDalamCelcius = nilai - 273.15;
-            break;
-        default:
-            return 'Satuan asal tidak valid';
-    }
-    
-    let hasil;
-    switch (ke.toLowerCase()) {
-        case 'c':
-            hasil = suhuDalamCelcius;
-            break;
-        case 'r':
-            hasil = suhuDalamCelcius * (4/5);
-            break;
-        case 'f':
-            hasil = (suhuDalamCelcius * (9/5)) + 32;
-            break;
-        case 'k':
-            hasil = suhuDalamCelcius + 273.15;
-            break;
-        default:
-            return 'Satuan tujuan tidak valid';
-    }
-    
-    return hasil;
+function konversiSuhu(suhu, dariSatuan, keSatuan) {
+  let celcius;
+
+  if (dariSatuan.toLowerCase() === "c") {
+    celcius = suhu;
+  } else if (dariSatuan.toLowerCase() === "r") {
+    celcius = (suhu * 5) / 4;
+  } else if (dariSatuan.toLowerCase() === "f") {
+    celcius = ((suhu - 32) * 5) / 9;
+  } else if (dariSatuan.toLowerCase() === "k") {
+    celcius = suhu - 273.15;
+  } else {
+    return "Satuan asal tidak dikenal";
+  }
+
+  let hasil;
+  if (keSatuan.toLowerCase() === "c") {
+    hasil = celcius;
+  } else if (keSatuan.toLowerCase() === "r") {
+    hasil = (celcius * 4) / 5;
+  } else if (keSatuan.toLowerCase() === "f") {
+    hasil = (celcius * 9) / 5 + 32;
+  } else if (keSatuan.toLowerCase() === "k") {
+    hasil = celcius + 273.15;
+  } else {
+    return "Satuan tujuan tidak dikenal";
+  }
+
+  return `${suhu} ${dariSatuan.toUpperCase()} = ${hasil.toFixed(
+    2
+  )} ${keSatuan.toUpperCase()}`;
 }
-console.log("30C ke F: ", konversiSuhu(30, 'C', 'F'));
-console.log("100F ke K: ", konversiSuhu(100, 'F', 'K'));
-console.log("273K ke R: ", konversiSuhu(273, 'K', 'R'));
-console.log("50R ke C: ", konversiSuhu(50, 'R', 'C'));
+
+console.log(konversiSuhu(100, "C", "F"));
+console.log(konversiSuhu(0, "C", "K"));
+console.log(konversiSuhu(80, "R", "C"));
